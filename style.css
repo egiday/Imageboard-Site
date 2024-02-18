@@ -1,0 +1,98 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1a1625; /* Dark/Mixed - 100 for body background */
+    color: #908d96; /* Dark/Mixed - 600 for on background texts */
+    margin: 0;
+    padding: 20px;
+    line-height: 1.5;
+}
+
+header {
+    background-color: #46424f; /* Dark/Mixed - 300 for sidebars, navbar */
+    color: #ba9ffb; /* Primary - 600 for navbar text */
+    padding: 1rem;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #ba9ffb; /* Primary - 600 for link color */
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+main {
+    margin-top: 20px;
+}
+
+#post-section, .post, .replies, #posts {
+    background-color: #2f2b3a; /* Dark/Mixed - 200 for cards background */
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.post, .replies div {
+    background-color: #2f2b3a; /* Consistent with card background */
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+}
+
+input[type="text"], textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+    border: 1px solid #3f3f3f; /* Dark/Mixed - 300 for inputs border */
+    background-color: #3f3f3f; /* Dark/Mixed - 300 for inputs background */
+    color: #ba9ffb; /* Primary - 600 for text */
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #a688fa; /* Primary - 500 for buttons */
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #9171f8; /* Primary - 400 for hover effect */
+}
+
+#replyInput {
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Imageboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Simple Imageboard</h1>
+        <nav>
+            <ul>
+                <li><a href="#" data-topic="all">Home</a></li>
+                <li><a href="#" data-topic="video-games">Video Games</a></li>
+                <li><a href="#" data-topic="music">Music</a></li>
+                <li><a href="#" data-topic="photography">Photography</a></li>
+                <li><a href="#" data-topic="anime">Anime</a></li>
+                <li><a href="#" data-topic="technology">Technology</a></li>
+                <li><a href="#" data-topic="science">Science</a></li>
+                <li><a href="#" data-topic="movies">Movies</a></li>
+                <li><a href="#" data-topic="books">Books</a></li>
+                <li><a href="#" data-topic="art">Art</a></li>
+                <li><a href="#" data-topic="fashion">Fashion</a></li>
+                <!-- Add more topics as needed -->
+            </ul>
+        </nav>        
+    </header>
+    <main>
+        <section id="post-section">
+            <h2>Post a Comment or Image</h2>
+            <form id="post-form" onsubmit="submitPost(event)">
+                <input type="text" id="user-name" placeholder="Your Name" required>
+                <textarea id="post-content" placeholder="Your Comment" required></textarea>
+                <input type="file" id="image-upload" accept="image/*">
+                <button type="submit">Post</button>
+            </form>
+        </section>
+        <section id="posts">
+            <!-- Posts will be dynamically inserted here -->
+        </section>
+    </main>
+</body>
+</html>
