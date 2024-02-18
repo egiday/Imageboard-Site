@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Imageboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
 <body>
     <header>
-        <h1>Simple Imageboard</h1>
+        <h1>Simple Image Board</h1>
         <nav>
             <ul>
                 <li><a href="#" data-topic="all">Home</a></li>
@@ -32,7 +33,8 @@
             <form id="post-form" onsubmit="submitPost(event)">
                 <input type="text" id="user-name" placeholder="Your Name" required>
                 <textarea id="post-content" placeholder="Your Comment" required></textarea>
-                <input type="file" id="image-upload" accept="image/*">
+                <label for="image-upload">Upload Image:</label>
+                <input type="file" id="image-upload" accept="image/*" title="Upload an image" placeholder="Select an image">
                 <button type="submit">Post</button>
             </form>
         </section>
