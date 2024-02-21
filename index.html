@@ -25,7 +25,12 @@
                 <li><a href="#" data-topic="fashion">Fashion</a></li>
                 <!-- Add more topics as needed -->
             </ul>
-        </nav>        
+        </nav>     
+        <div id="search-section">
+            <input type="text" id="search-input" placeholder="Search posts...">
+            <button onclick="searchPosts()">Search</button>
+        </div>
+           
     </header>
     <main>
        
@@ -34,10 +39,12 @@
             <form id="post-form" onsubmit="submitPost(event)">
                 <input type="text" id="user-name" placeholder="Your Name" hidden>
                 <textarea id="post-content" placeholder="Your Comment" required></textarea>
+                <input type="text" id="post-tags" placeholder="Tags (comma-separated)" />
                 <label for="image-upload">Upload Image:</label>
-                <input type="file" id="image-upload" accept="image/*" title="Upload an image" placeholder="Select an image">
+                <input type="file" id="image-upload" accept="image/*" title="Upload an image">
                 <button type="submit">Post</button>
             </form>
+            
         </section>
         <section id="posts">
             <!-- Posts will be dynamically inserted here -->

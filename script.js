@@ -20,36 +20,52 @@ document.addEventListener('DOMContentLoaded', () => {
     displayPosts();
 });
 
-// Function to display posts filtered by the current topic
-function displayPosts() {
+function displayPosts(filteredPosts = null) {
     const postsElement = document.getElementById('posts');
     postsElement.innerHTML = ''; // Clear current content
 
-    let posts = JSON.parse(localStorage.getItem('posts')) || [];
+    // Use the provided filteredPosts or retrieve all posts if none are provided
+    let posts = filteredPosts || JSON.parse(localStorage.getItem('posts')) || [];
 
-    // Filter and sort posts
-    let filteredPosts = posts.filter(post => currentTopic === 'all' || post.topic === currentTopic);
-    filteredPosts.sort((a, b) => b.replies.length - a.replies.length);
+    // The existing sorting and filtering logic remains the same
+    let sortedFilteredPosts = posts.filter(post => currentTopic === 'all' || post.topic === currentTopic);
+    sortedFilteredPosts.sort((a, b) => b.replies.length - a.replies.length);
 
-    filteredPosts.forEach(post => {
+    sortedFilteredPosts.forEach(post => {
         const postElement = document.createElement('div');
         postElement.classList.add('post');
         let postHtml = `
             <strong>${post.userName}</strong>
             <p>${post.postContent}</p>
         `;
-    
+
         // If there's an image, add an <img> element to display it
         if (post.image) {
             postHtml += `<img src="${post.image}" alt="User uploaded image" style="max-width: 100%; height: auto;">`;
         }
-    
+
         postHtml += `<button onclick="viewPost('${post.id}')">View ${post.replies.length} Replies</button>`;
-        
+
         postElement.innerHTML = postHtml;
         postsElement.appendChild(postElement);
     });
 }
+
+function searchPosts() {
+    const searchQuery = document.getElementById('search-input').value.toLowerCase().trim();
+    const posts = JSON.parse(localStorage.getItem('posts')) || [];
+
+    // Filter posts by search query
+    const filteredPosts = posts.filter(post => 
+        post.postContent.toLowerCase().includes(searchQuery) ||
+        post.userName.toLowerCase().includes(searchQuery) ||
+        (post.tags && post.tags.some(tag => tag.toLowerCase().includes(searchQuery)))
+    );
+
+    displayPosts(filteredPosts); // Directly use displayPosts with filtered results
+}
+
+
 
 function submitPost(event) {
     event.preventDefault(); // Prevent the default form submission
@@ -120,7 +136,7 @@ function viewPost(postId) {
 // Adding a reply to a post
 function addReply(postId) {
     const replyInput = document.getElementById('replyInput');
-    const replyContent = replyInput.value.trim();
+    const replyContent = replyInput.value.trim();a
     const userName = localStorage.getItem('userName') || 'Anonymous'; // Use stored username
 
     if (!replyContent) return;
