@@ -1,0 +1,22 @@
+{
+  "name": "nreai",
+  "version": "1.0.0",
+  "description": "imageboard",
+  "main": "index.js",
+  "scripts": {
+    "build": "cd backend && npm install  && cd ../frontend && npm install && npm run build",
+    "start": "node backend/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/egiday/Imageboard-Site.git"
+  },
+  "author": "degife",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/egiday/Imageboard-Site/issues"
+  },
+  "homepage": "https://github.com/egiday/Imageboard-Site#readme"
+}
+  
