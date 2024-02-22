@@ -1,4 +1,6 @@
 let currentTopic = 'all'; // Default to showing all topics
+let isSubmitting = false;
+
 
 document.addEventListener('DOMContentLoaded', () => {
     // Prompt for username if not already saved
@@ -8,17 +10,30 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('userName', userName);
         }
     }
+
     document.querySelectorAll('nav ul li a').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
+            // Remove 'active' class from all topics
+            document.querySelectorAll('nav ul li a').forEach(node => {
+                node.classList.remove('active');
+            });
+
+            // Add 'active' class to the clicked topic
+            e.target.classList.add('active');
             currentTopic = e.target.getAttribute('data-topic');
             displayPosts(); // Refresh posts display based on the selected topic
         });
     });
 
+    // Set the 'active' class on the current topic after refreshing or loading the page
+    const currentActiveTopic = localStorage.getItem('currentTopic') || 'all';
+    document.querySelector(`nav ul li a[data-topic="${currentActiveTopic}"]`)?.classList.add('active');
+
     // Initial display of posts
     displayPosts();
 });
+
 
 // Function to display posts filtered by the current topic
 function displayPosts() {
@@ -54,27 +69,37 @@ function displayPosts() {
 function submitPost(event) {
     event.preventDefault(); // Prevent the default form submission
 
+    if (isSubmitting) {
+        console.log('Submission in progress, please wait.');
+        return; // Exit the function to avoid submitting
+    }
+
+    isSubmitting = true; // Indicate that submission is in progress
+
     const userName = localStorage.getItem('userName') || 'Anonymous';
     const postContent = document.getElementById('post-content').value.trim();
     const imageFile = document.getElementById('image-upload').files[0];
 
     if (!userName || !postContent) {
-        return; // Exit the function to avoid submitting
+        isSubmitting = false; // Reset the flag if required fields are missing
+        return;
     }
 
     // Convert image to Base64 if present
     if (imageFile) {
         const reader = new FileReader();
-        reader.onloadend = function() {
+        reader.onloadend = () => {
             const base64Image = reader.result;
             createPost(userName, postContent, base64Image);
+            isSubmitting = false; // Reset the flag after submission
         };
         reader.readAsDataURL(imageFile);
     } else {
-        // No image uploaded, proceed without an image
         createPost(userName, postContent);
+        isSubmitting = false; // Reset the flag after submission
     }
 }
+
 
 // Refactored post creation logic into a separate function
 function createPost(userName, postContent, imageBase64 = '') {

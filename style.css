@@ -100,9 +100,26 @@ button:hover {
     color: #161419; /* Hover State Text */
 }
 
+nav ul li a.active {
+    text-decoration: underline;
+    color: #D9D9D9;
+}
+
+
 #replyInput {
     margin-top: 20px;
 }
+
+nav ul li a.active {
+    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 10" xmlns="http://www.w3.org/2000/svg"><path d="M0 5 q50 -10 100 0" stroke="%237A51ED" stroke-width="5" fill="none"/></svg>');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    text-decoration: none;
+    padding-bottom: 30px;    
+
+}
+
 
 label[for="image-upload"] {
     display: inline-block;
